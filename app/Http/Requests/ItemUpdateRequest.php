@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\File;
 
-class ItemRequest extends FormRequest
+class ItemUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,7 +25,6 @@ class ItemRequest extends FormRequest
         return [
             'code_no' => 'required',
             'name' => 'required',
-            'image' => 'required',File::types(['png','jpg','jpeg']),
             'price' => 'required',
             'discount' => 'required',
             'in_stock' => 'required',

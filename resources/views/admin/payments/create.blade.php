@@ -25,7 +25,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="logo" class="form-label">Logo</label>
-                            <input type="file"  class="form-control" id="logo" name="logo">
+                            <input type="file" accept="image/*" class="form-control" id="logo" name="logo">
                         </div>
                         <div class = "d-grid mb-4">
                             <button class="btn btn-primary" type="submit">Save</button>

@@ -39,8 +39,8 @@
                                 <td>{{$i++}}</td>
                                 <td>{{$category->name}}</td>
                                 <td>
-                                    <a href="" class="btn btn-sm btn-warning">Edit</a>
-                                    <a href="" class="btn btn-sm btn-danger">Delete</a>
+                                    <a href="{{route('backend.categories.edit',$category->id)}}" class="btn btn-sm btn-warning">Edit</a>
+                                    <button type="button" class="btn btn-sm btn-danger delete" data-id="{{$category->id}}">Delete</button>
                                 </td>
                             </tr>
                         @endforeach
@@ -50,4 +50,13 @@
             </div>
         </div>
     </div>
+@endsection
+@section('script')
+    <script>
+        $(document).ready(function(){
+            $('tbody').on('click','.delete',function(){
+                alert('hi');
+            })
+        })
+    </script>
 @endsection
