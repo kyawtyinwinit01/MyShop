@@ -49,7 +49,7 @@
                                 <td>{{$item->name}}</td>
                                 <td>{{$item->price}}</td>
                                 <td>{{$item->in_stock}}</td>
-                                <td>{{$item->category_id}}</td>
+                                <td>{{$item->category->name}}</td>
                                 <td>
                                     <a href="{{route('backend.items.edit',$item->id)}}" class="btn btn-sm btn-warning">Edit</a>
                                     <button type="button" class="btn btn-sm btn-danger delete" data-id="{{$item->id}}">Delete</button>

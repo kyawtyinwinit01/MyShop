@@ -25,12 +25,25 @@
                                         <!-- Product name-->
                                         <h5 class="fw-bolder">{{$item->name}}</h5>
                                         <!-- Product price-->
-                                        {{$item->price}} MMK
+                                        @if($item->discount > 0)
+                                            <span class="text-decoration-line-through">{{$item->price}} MMK</span>
+                                            {{$item->price - ($item->price * ($item->discount/100))}}MMK
+                                        @else
+                                            {{$item->price}} MMK
+                                        @endif
                                     </div>
                                 </div>
                                 <!-- Product actions-->
                                 <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                    <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{{route('shop-item',$item->id)}}">View options</a></div>
+                                    <div class="text-center row">
+                                        <div class="col-md-4">
+                                            <a class="btn btn-outline-dark mt-auto" href="{{route('shop-item',$item->id)}}">Detail</a>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <input type="hidden" class="qty" value="1">
+                                            <button class="btn btn-dark addToCart" data-id="{{$item->id}}" data-name="{{$item->name}}" data-price="{{$item->price}}" data-discount="{{$item->discount}}" data-image="{{$item->image}}">Add to Cart</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

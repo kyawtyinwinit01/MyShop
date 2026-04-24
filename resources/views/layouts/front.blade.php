@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>Shop Homepage - Start Bootstrap Template</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
@@ -17,11 +18,11 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="#!">KYW Shop</a>
+                <a class="navbar-brand" href="{{route('shop')}}">KYW Shop</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Home</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{route('shop')}}">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
@@ -34,11 +35,11 @@
                         </li>
                     </ul>
                     <form class="d-flex">
-                        <button class="btn btn-outline-dark" type="submit">
+                        <a href="{{route('item-carts.carts')}}"class="btn btn-outline-dark">
                             <i class="bi-cart-fill me-1"></i>
                             Cart
-                            <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-                        </button>
+                            <span class="badge bg-dark text-white ms-1 rounded-pill" id="count_item">0</span>
+                        </a>
                     </form>
                     @guest
                         <a href="/login" class="btn mx-3">Login</a>
@@ -49,6 +50,15 @@
                                 {{Auth::user()->name}}
                             </a>
                             <ul class="dropdown-menu">
+                                @if(Auth::user()->role == 'User')
+                                    <li>
+                                        <a href="" class="dropdown-item">Profile</a>
+                                    </li>
+                                @else
+                                    <li>
+                                        <a href="/backend" class="dropdown-item">Admin Panel</a>
+                                    </li>
+                                @endif
                                 <li>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
@@ -71,9 +81,16 @@
         <footer class="py-5 bg-dark">
             <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p></div>
         </footer>
+        <!-- jquery -->
+          <script src="https://cdn-script.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="{{asset('front-assets/js/scripts.js')}}"></script>
+        <!-- add to cart -->
+        <script src="{{asset('front-assets/js/add_to_cart.js')}}"></script>
+
+        @yield('script')
+
     </body>
 </html>
