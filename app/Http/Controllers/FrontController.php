@@ -58,7 +58,7 @@ class FrontController extends Controller
             $order->qty = $data->qty;
             $order->payment_slip =  '/images/payment_slips/'.$file_name;
             $order->status = 'Pending';
-            $order->notes = $request->note;
+            $order->address = $request->address;
             $order->item_id = $data->id;
             $order->payment_id =$request->payment_method;
             $order->user_id = Auth::id();

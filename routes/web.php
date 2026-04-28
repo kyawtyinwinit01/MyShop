@@ -17,7 +17,7 @@ Route::group(['middleware'=>['auth','role:Super Admin|Admin'],'prefix'=>'backend
     Route::resource('/items',App\Http\Controllers\Admin\ItemController::class);
     Route::resource('/categories',App\Http\Controllers\Admin\CategoryController::class);
     Route::resource('/payments',App\Http\Controllers\Admin\PaymentController::class);
-    Route::resource('/users',App\Http\Controllers\Admin\UserController::class);
+    Route::resource('/users',App\Http\Controllers\Admin\UserController::class)->middleware('role:Super Admin');
 
 
     Route::get('/orders',[App\Http\Controllers\Admin\OrderController::class,'orders'])->name('orders');

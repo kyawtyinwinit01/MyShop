@@ -18,7 +18,8 @@ return new class extends Migration
             $table->string('qty');
             $table->string('payment_slip');
             $table->string('status');
-            $table->string('notes');
+            //$table->string('notes');
+            $table->text('address');
             $table->unsignedBigInteger('item_id');
             $table->foreign('item_id')
                 ->references('id')
