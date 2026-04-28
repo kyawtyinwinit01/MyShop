@@ -24,7 +24,11 @@ class FrontController extends Controller
         //echo ($id);
         $item = Item::find($id);
         //var_dump($item);
-        return view('front.shop-item',compact('item'));
+        $category_id = $item->category_id;
+        //$related_items = Item::where('category_id',$category_id)->orderBy('id','DESC')->limit(4)->get();
+        //$feature_post = Item::where('category_id',$category_id)->orderBy('id','DESC')->limit(1)->first();
+        $related_items = Item::where('category_id',$category_id)->where('id','!=',$id)->orderBy('id','DESC')->limit(4)->get();
+        return view('front.shop-item',compact('item','related_items'));
     }
 
     public function carts(){
@@ -63,6 +67,10 @@ class FrontController extends Controller
         }
 
         return 'Your Order Successful';
+    }
 
+    public function itemCategory($category_id){
+        $items = Item::where('category_id',$category_id)->orderBy('id','DESC')->paginate(8);
+        return view('front.item-category',compact('items'));
     }
 }
