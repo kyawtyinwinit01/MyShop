@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Http\Requests\CategoryRequest;
+use App\Http\Requests\CategoryUpdateRequest;
 
 
 class CategoryController extends Controller
@@ -67,9 +68,23 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(CategoryUpdateRequest $request, string $id)
     {
-        //
+        $category = Category::find($id);
+        $category->update($request->all());
+
+        if($request->hasFile('image')){
+            $file_name = time().'.'.$request->image->extension();  //234442222.jpg
+            $upload = $request->image->move(public_path('/images/categories/'),$file_name);
+            if($upload){
+                $category->image = "/images/categories/".$file_name;
+            }
+        }else{
+            $category->image = $request->old_image;
+        }
+
+        $category->save();
+        return redirect()->route('backend.categories.index');
     }
 
     /**
@@ -77,6 +92,9 @@ class CategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $category = Category::find($id);
+        $category->delete();
+
+        return redirect()->route('backend.categories.index');
     }
 }

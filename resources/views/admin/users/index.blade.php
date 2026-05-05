@@ -53,8 +53,8 @@
                                 <td>{{$user->email}}</td>
                                 <td>{{$user->role}}</td>
                                 <td>
-                                    <a href="#" class="btn btn-sm btn-warning">Edit</a>
-                                    <button type="button" class="btn btn-sm btn-danger">Delete</button>
+                                    <a href="{{route('backend.users.edit',$user->id)}}" class="btn btn-sm btn-warning">Edit</a>
+                                    <button type="button" class="btn btn-sm btn-danger delete" data-id="{{$user->id}}">Delete</button>
                                 </td>
                             </tr>
                         @endforeach
@@ -67,7 +67,7 @@
 
 
 <!-- Modal -->
-    <!-- <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
             <div class="modal-header bg-danger text-white">
@@ -87,19 +87,19 @@
             </div>
             </div>
         </div>
-    </div> -->
+    </div>
 
 @endsection
-<!-- @section('script')
+@section('script')
     <script>
         $(document).ready(function(){
             $('tbody').on('click','.delete',function(){
                // alert('hello');
                 let id = $(this).data('id');
                 //console.log(id);
-                $('#deleteForm').attr('action',`items/${id}`);
+                $('#deleteForm').attr('action',`users/${id}`);
                 $('#deleteModal').modal('show');
             })
         })
     </script>
-@endsection -->
+@endsection

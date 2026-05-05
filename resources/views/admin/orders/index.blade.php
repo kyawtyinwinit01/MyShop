@@ -65,10 +65,9 @@
                                         @endif
                                         ">{{$order->status}}</span>
                                     </td>
-                                    <td>{{$order->payment->name}}</td>
-                                    <!-- <td>
+                                    <td>
                                         <img src="{{$order->payment->logo}}" width="50">
-                                    </td> -->
+                                    </td>
                                     <td>
                                         <a href="{{route('backend.orders.detail',$order->voucher_no)}}" class="btn btn-sm btn-info">Detail</a>
                                     </td>

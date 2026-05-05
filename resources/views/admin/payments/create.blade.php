@@ -21,11 +21,17 @@
                     <div class = "ms-3 me-3 mt-3">
                         <div class="mb-3">
                             <label for="name" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="name" name="name">
+                            <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{old('name')}}">
+                            @error('name')
+                            <div class="invalid-feedback">{{$message}}</div>
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <label for="logo" class="form-label">Logo</label>
-                            <input type="file" accept="image/*" class="form-control" id="logo" name="logo">
+                            <input type="file" accept="image/*" class="form-control @error('logo') is-invalid @enderror" id="logo" name="logo" value = "{{old('logo')}}">
+                            @error('logo')
+                            <div class="invalid-feedback">{{$message}}</div>
+                            @enderror
                         </div>
                         <div class = "d-grid mb-4">
                             <button class="btn btn-primary" type="submit">Save</button>

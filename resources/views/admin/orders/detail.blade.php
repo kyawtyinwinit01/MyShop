@@ -19,8 +19,8 @@
                     </div>
                     <div class="col-md-6 text-end">
                         <p>Date - {{$order_first->created_at}}</p>
-                        <p>Address - </p>
-                        <!-- <p>Address - {{$order_first->user->address}} </p> insert address column-->
+
+                        <p>Address - {{$order_first->address}} </p>
                         <p>Payment Method - {{$order_first->payment->name}} </p>
                     </div>
                 </div>
